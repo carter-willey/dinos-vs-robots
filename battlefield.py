@@ -9,7 +9,8 @@ class Battlefield:
         self.fleet = Fleet()
 
     def run_game(self):
-        pass
+        self.display_welcome()
+        self.battle()
 
     def display_welcome(self):
         print("Welcome to the ultimate battle between dinosaurs and robots!")
@@ -49,6 +50,11 @@ class Battlefield:
         time.sleep(.75)
         robot_being_attacked = self.fleet.robots[robot_to_attack_response - 1]
         dinosaur.attack(robot_being_attacked)
+        if robot_being_attacked.health > 0:
+            print(f"{dinosaur.type} attacked {robot_being_attacked.name} for {dinosaur.attack_power} damage. {robot_being_attacked.name}'s health is now: {robot_being_attacked.health}")
+        else:
+            print(f"{dinosaur.type} attacked {robot_being_attacked.name} for {dinosaur.attack_power} damage. {robot_being_attacked.name} has been defeated")
+            self.fleet.robots.remove(robot_being_attacked)
         time.sleep(1.25)
 
     def show_dino_opponent_options(self):
