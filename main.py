@@ -1,4 +1,7 @@
-from fleet import Fleet
-fleet1 = Fleet()
-fleet1.create_fleet("ee")
-print(fleet1.robots)
+from battlefield import Battlefield
+
+battlefield1 = Battlefield()
+
+battlefield1.display_welcome()
+battlefield1.show_dino_opponent_options()
+battlefield1.dino_turn(battlefield1.herd.dinosaurs[0])
