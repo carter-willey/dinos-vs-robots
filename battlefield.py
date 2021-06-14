@@ -19,16 +19,24 @@ class Battlefield:
 
     def battle(self):
         game_state = True
-        dino_attackers = True
 
         dino_attacker_index = 0
         robots_attacker_index = 0
         while game_state:
-            
-            self.dino_turn(self.herd.dinosaurs[dino_attacker_index])
-            dino_attacker_index += 1
-            self.robo_turn(self.fleet.robots[robots_attacker_index])
-            robots_attacker_index += 1
+            if dino_attacker_index < len(self.herd.dinosaurs):
+                self.dino_turn(self.herd.dinosaurs[dino_attacker_index])
+                dino_attacker_index += 1
+            else:
+                dino_attacker_index = 0
+                self.dino_turn(self.herd.dinosaurs[dino_attacker_index])
+                dino_attacker_index += 1
+            if robots_attacker_index < len(self.fleet.robots):
+                self.robo_turn(self.fleet.robots[robots_attacker_index])
+                robots_attacker_index += 1
+            else:
+                robots_attacker_index = 0
+                self.robo_turn(self.fleet.robots[robots_attacker_index])
+                robots_attacker_index += 1
 
         # if len(self.fleet.robots) == 0 or len(self.herd.dinosaurs) == 0:
         #  game_state = False
